@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PDF Upload and Sign</title>
+</head>
+<body>
+    <h1>Upload PDF and Sign</h1>
+    <form id="uploadForm">
+        <label for="pdf">PDF:</label>
+        <input type="file" id="pdf" name="file" required><br><br>
+
+        <label for="bankId">Bank ID:</label>
+        <input type="text" id="bankId" name="bank_id" required><br><br>
+
+        <button type="button" onclick="encryptFile()">Encrypt</button>
+        <button type="button" onclick="signFile()">Sign</button>
+        <button type="button" onclick="submitFile()">Submit</button>
+    </form>
+
+    <script>
+        function sendRequest(endpoint, formData) {
+            return fetch('http://localhost:5000/' + endpoint, {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => alert(data.message))
+            .catch(error => console.error('Error:', error));
+        }
+
+        function encryptFile() {
+            const form = document.getElementById('uploadForm');
+            const formData = new FormData(form);
+            sendRequest('upload', formData);
+        }
+
+        function signFile() {
+            const form = document.getElementById('uploadForm');
+            const formData = new FormData(form);
+            sendRequest('sign', formData);
+        }
+
+        function submitFile() {
+            alert('Submit functionality is not implemented in this example.');
+        }
+    </script>
+</body>
+</html>
