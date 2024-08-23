@@ -1,0 +1,9 @@
+version: '3'
+services:
+  pdf-encryptor:
+    build: .
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./uploads:/app/uploads
+      - ./privkey1.out:/app/privkey1.out  # Mount the private key file into the container
