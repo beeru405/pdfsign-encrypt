@@ -1,4 +1,9 @@
 # pdfsign-encrypt
+Requirements:
+Docker,
+Python,
+Flask
+
 
 ```
 docker-compose build
